@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Disease Precautions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%);
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .precautions-box {
+            background-color: #ffffff47;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+        }
+
+        .precautions-box h2 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .precautions-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .precautions-box ul li {
+            margin-bottom: 10px;
+        }
+
+        .btn-container {
+            text-align: center;
+        }
+
+        button {
+            padding: 17px 40px;
+            border-radius: 50px;
+            cursor: pointer;
+            border: 0;
+            background-color: white;
+            box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 15px;
+            transition: all 0.5s ease;
+        }
+
+        button:hover {
+            letter-spacing: 3px;
+            background-color: hsl(261deg 80% 48%);
+            color: hsl(0, 0%, 100%);
+            box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+        }
+
+        button:active {
+            letter-spacing: 3px;
+            background-color: hsl(261deg 80% 48%);
+            color: hsl(0, 0%, 100%);
+            box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+            transform: translateY(10px);
+            transition: 100ms;
+        }
+    </style>
+</head>
+<body>
+    <div class="precautions-box">
+        <h1>Precautions</h1>
+        <h2>Precautions for {{ predicted_class }}</h2>
+        <ul>
+            {% for precaution in precautions %}
+            <li>{{ precaution }}</li>
+            {% endfor %}
+        </ul>
+        <div class="btn-container">
+            <a href="{{ url_for('preduct') }}"><button>Back to Predict</button></a>
+        </div>
+    </div>
+</body>
+</html>

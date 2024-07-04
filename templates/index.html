@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Lung Diseases Prediction</title> 
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        header {
+  background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);
+    color:#f0ebeb;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid rgb(2,0,36);
+    border-top: 5px solid rgb(2,0,36);
+    transition: all 0.3s ease;
+}
+body{
+  background: #0f0c29;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+nav {
+    background-color: rgba(0, 0, 0, 0.593);
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+nav a {
+    color: #e0e4e8;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+nav a:hover {
+    color: #e9eff5;
+    transform: scale(1.1);
+}
+
+
+ul{
+    display: flex;
+    gap: 1.2rem;
+    list-style: none;
+  }
+  
+  .link {
+    text-decoration: none;
+    color: #e6ede9;
+    font-size: 18px;
+    padding: 0.5rem;
+    position: relative;
+  }
+  
+  
+.container1{
+  display: flex;
+  
+}
+.container1 img{
+  float: left;
+}
+#about-image{
+  margin-top:90px;
+  margin-right: 10px;
+  width: 400px;
+  height:400px;
+}
+.Contact{
+  display: flex;
+}
+.contat-detail{
+  float: left;
+}
+#con-image{
+ 
+  margin-top: 20px;
+  margin-left: 40px;
+    width: 450px;
+    height: 200px;
+}
+
+
+
+  @media only screen and (max-width: 600px) {
+    nav ul {
+      display: none;
+    }
+  }
+  .link::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    
+    background: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+
+    border-radius: 5px;
+    transform: scaleX(0);
+    transition: all 0.6s ease;
+  }
+  
+  .link::before {
+    bottom: 0;
+    left: 0;
+  }
+  
+  .link:hover::before {
+    transform: scaleX(1);
+  }
+  .card {
+    width: 400px;
+  }
+  
+  .card-content {
+    position: relative;
+    padding: 15rem 5rem;
+    transform-style: preserve-3d;
+    transition: transform 3s;
+    font-size: clamp(12px,4vw,32px);
+  }
+  .card:hover .card-content {
+    transform: rotateY(180deg);
+  }
+  
+  .card-front,
+  .card-back {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
+  
+  .card-front
+  {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+    color: rgb(244, 244, 250);
+    font-size: clamp(12px,4vw,32px);
+    border-radius: 10px;
+  }
+  .card-back {
+    background-color: rgba(255, 255, 255, 0.658);
+            padding: 15px;
+            margin-bottom: 5px;
+            border-radius: 10px;
+
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+    color: rgb(8, 8, 7);
+    font-size: 20px;
+  }
+  
+  .card-front::before {
+    content: "";
+    position: absolute;
+    inset: 1rem;
+    border: 3px solid rgb(28,65,175);
+    border-radius: 10px;
+    transform: translateZ(2rem);
+  }
+  
+  .title {
+    font-family: "Teko", sans-serif;
+    font-size: 4.5rem;
+    text-transform: uppercase;
+    line-height: 120%;
+    transform: translateZ(4.4rem);
+    
+  }
+  
+  .sub-title {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transform: translateZ(3rem);
+  }
+  
+  .card-back {
+    transform: rotateY(180deg);
+    gap: 0.5rem;
+  }
+  
+  .back-title {
+    
+
+    font-family: "Teko", sans-serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: rgb(17, 18, 14);
+    text-transform: uppercase;
+    align-self: center;
+    transform: translateZ(2rem);
+  }
+  
+  .card-back span {
+    font-weight: 600;
+    color: rgb(237, 237, 235);
+  }
+  
+  button {
+    align-self: center;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+    padding:0.9rem 2rem;
+    margin:0;
+    font-family: inherit;
+    font-size: inherit;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 0.05rem;
+    font-weight: 700;
+    font-size: 17px;
+    border-radius: 500px;
+    overflow: hidden;
+    background: linear-gradient(90deg, #0700b8 0%, #00ff88 100%);
+    color: ghostwhite;
+   }
+   
+   button span {
+    position: relative;
+    z-index: 10;
+    transition: color 0.4s;
+   }
+   
+   button:hover span {
+    color: black;
+   }
+   
+   button::before,
+   button::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+   }
+   
+   button::before {
+    content: "";
+    background: #000;
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+   }
+   
+   button:hover::before {
+    transform: translate3d(100%, 0, 0);
+   }
+   
+  
+  .container {
+    display: flex;
+    
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.card {
+  
+  
+    width: calc(33.33% - 20px); 
+}
+.container1 {
+  display: flex;
+  padding: 20px;
+  background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.container1 h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.container1 p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.about-image img {
+  width: 100%; /* Adjust the width as needed */
+  max-width: 400px;
+  margin-bottom: 100px; /* Set a maximum width if necessary */
+  height: auto; /* Maintain aspect ratio */
+  filter: drop-shadow(20px 7px 5px rgb(189, 63, 189));
+}
+.container1 .about-content {
+  flex-grow: 1;
+  margin-left: 20px;
+  margin-top: 70px; /* Adjust margin as needed */
+}
+
+#Contact {
+  padding: 20px;
+  background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+#Contact h2 {
+  margin-left: 30px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  margin-top:40px;
+  margin-bottom: 1px;
+}
+
+.contact-detail {
+  margin-bottom:0;
+  margin-left: 20px;
+
+}
+
+.contact-detail li {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  margin-top:2px;
+  margin-bottom: 5px;
+}
+.con-image
+{
+  margin-left: 800px;
+  margin-bottom:15px;
+  filter: drop-shadow(20px 7px 5px rgb(189, 63, 189));
+}
+#Contact .contat-detail {
+  margin-left:200px;
+  position: 20px; /* Adjust margin as needed */
+}
+
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const returnHomeButton = document.getElementById('returnHomeButton');
+            returnHomeButton.addEventListener('click', function() {
+                window.location.href = 'index.html';
+            });
+
+            const predictButtons = document.querySelectorAll('.predict');
+            predictButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    window.location.href = 'preduct.html';
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header id="Home">
+        <h1>Lung Diseases</h1>
+    </header>
+    <nav>
+        <a href="#" class="link">Home</a>
+        <a href="preduct" class="link">Predict</a>
+        <a href="#About" class="link">About</a>
+        <a href="#Contact" class="link">Contact</a>
+    </nav>
+    <div class="container">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-front" style="background-image: url(./static/p1.jpg);">
+                    <p class="sub-title">Lung Diseases</p>
+                    <h1 class="title">Pneumonia</h1>
+                    <p class="sub-title">2023</p>
+                </div>
+                <div class="card-back" style="background-image: url(./static/p.jpeg);">
+                    <div class="back-title">Pneumonia</div>
+                    <div class="Diseases Info">
+                        Pneumonia is an infection that inflames the air sacs in one or both lungs. The air sacs may fill with fluid or pus (purulent material), causing cough with phlegm or pus, fever, chills, and difficulty breathing.
+                    </div>
+                    <button class="predict"><span>Predict</span></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <div class="card-front" style="background-image: url(./static/c.jpeg);">
+                    <p class="sub-title">Lung Diseases</p>
+                    <h1 class="title">Covid-19</h1>
+                    <p class="sub-title">2019</p>
+                </div>
+                <div class="card-back" style="background-image: url(./static/c2.jpeg);">
+                    <div class="back-title">Covid-19</div>
+                    <div class="Disease Info">
+                        COVID-19 is an infectious disease caused by the SARS-CoV-2 virus. It primarily spreads through respiratory droplets when an infected person coughs, sneezes, or talks. Symptoms include fever, cough, shortness of breath, fatigue, body aches, loss of taste or smell, sore throat, and diarrhea.
+                    </div>
+                    <button class="predict"><span>Predict</span></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <div class="card-front" style="background-image: url(./static/t.jpeg);">
+                    <p class="sub-title">Lung Diseases</p>
+                    <h1 class="title">Tuberculosis</h1>
+                    <p class="sub-title">2023</p>
+                </div>
+                <div class="card-back" style="background-image: url(./static/t1.jpeg);">
+                    <div class="back-title">Tuberculosis</div>
+                    <div class="movie-description">
+                        Tuberculosis (TB) is a bacterial infection that primarily affects the lungs but can also affect other parts of the body. It spreads through the air when an infected person coughs or sneezes. Symptoms include coughing that lasts three or more weeks, coughing up blood, chest pain, unintentional weight loss, fatigue, fever, and night sweats.
+                    </div>
+                    <button class="predict"><span>Predict</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <div id="About" class="container1">
+        <div class="about-image">
+            <img src="/static/A1.jpeg" id="about-image" alt="About Image">
+        </div>
+        <div class="about-content">
+            <h1>About Lung Disease Prediction</h1>
+            <p>Lung diseases, including COVID-19, tuberculosis (TB), pneumonia, and healthy lung function, present formidable global health challenges, necessitating early detection and precise diagnosis for effective intervention. The SARS-CoV-2 virus, responsible for COVID-19, sparked a pandemic in late 2019, showcasing varying degrees of severity, from mild flu-like symptoms to severe pneumonia and fatality, underscoring the urgency for accurate identification and treatment. TB, caused by Mycobacterium tuberculosis, remains a significant health threat, particularly in impoverished regions, primarily affecting the lungs. Pneumonia, an inflammatory lung disease often triggered by pathogens, poses risks, especially to vulnerable demographics like young children and the elderly. Understanding these conditions' nuances is paramount for tailored management and prevention strategies.
+
+            In the realm of medical imaging, convolutional neural networks (CNNs) are instrumental for lung disease classification, adept at learning hierarchical representations of image features, aiding in accurate diagnosis. Moreover, recurrent neural networks (RNNs), such as Long Short-Term Memory (LSTM) networks and their bidirectional variants (BiLSTM), are crucial for analyzing sequential medical imaging data like chest X-rays (CXRs), capturing temporal dependencies for enhanced diagnostic accuracy. These advancements in deep learning hold transformative potential, promising to revolutionize clinical practice by providing trustworthy models for precise diagnosis, treatment planning, and ultimately improving public health outcomes globally.</p>
+        </div>
+    </div>
+    <br>
+
+    <div id="Contact">
+        <div class="contat-detail">
+            <h2><u>Contact Information:</u></h2><br>
+            <ol type="none">
+                <li><strong>Team Name:</strong>TEAM C2</li>
+                <li><strong>Email:</strong> <a href="mailto:info@harmonyhaven.com">miniprojectc2@gmai.com</a></li>
+                <li><strong>Phone:</strong> +91 123 456 7890</li>
+                <li><strong>Address:</strong> GMR Institute of Technology,Rajam</li>
+            </ol>
+        </div>
+        <div class="con-image">
+            <img src="/static/cu.jpg" id="con-image" alt="Contact Image">
+        </div>
+    </div>
+</body>
+</html>

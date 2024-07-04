@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Disease Classification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fffdfd39;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .result-box {
+            background-color: #faf8f83b;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+        }
+
+        .result-box h2 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .result-box p {
+            margin-bottom: 10px;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 17px 40px;
+            border-radius: 50px;
+            cursor: pointer;
+            border: 0;
+            background-color: white;
+            box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 15px;
+            transition: all 0.5s ease;
+        }
+
+        button:hover {
+            letter-spacing: 3px;
+            background-color: hsl(261deg 80% 48%);
+            color: hsl(0, 0%, 100%);
+            box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+        }
+
+        button:active {
+            letter-spacing: 3px;
+            background-color: hsl(261deg 80% 48%);
+            color: hsl(0, 0%, 100%);
+            box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+            transform: translateY(10px);
+            transition: 100ms;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-box">
+        <h1>Lung Disease Classification</h1>
+        <h2>Result:</h2>
+        {% if predicted_class != 'Normal' %}
+            <p>The Person is affected to <b>{{ predicted_class }}</b>, with {{ confidence|float * 100 }}% confidence</p>
+            <div class="btn-container">
+                <a href="{{ url_for('precautions2', predicted_class=predicted_class) }}"><button>Get Precautions</button></a>
+            </div>
+        {% else %}
+            <p>No Disease is detected. So the condition is <b>Normal</b></p>
+            <div class="btn-container">
+                <a href="{{ url_for('preduct') }}"><button>Back to Predict</button></a>
+            </div>
+        {% endif %}
+        <div class="btn-container">
+            <a href="{{ url_for('index') }}"><button>Back to Home</button></a>
+        </div>
+    </div>
+</body>
+</html>
+

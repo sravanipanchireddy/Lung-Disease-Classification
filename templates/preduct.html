@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Disease Classification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(90deg, #FDBB2D 0%, #3A1C71 100%);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #eee9e9;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.236);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            display: block;
+            border: 2px dashed #ccc;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: border-color 0.3s, box-shadow 0.3s; /* Add transition for smooth glowing effect */
+        }
+
+        label:hover {
+            border-color: #007bff;
+            box-shadow: 0 0 10px #007bff; /* Add glowing effect */
+        }
+
+        #imagePreview {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #imagePreview img {
+            max-width: 100%;
+            max-height: 300px;
+            margin-top: 20px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .btn-container{
+            
+            text-align: center;
+            margin-top: 15px;
+        
+        }
+
+        button {
+            padding: 17px 40px;
+            border-radius: 50px;
+            cursor: pointer;
+            border: 0;
+            background-color: white;
+            box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 15px;
+            transition: all 0.5s ease;
+        }
+
+        button:hover {
+            letter-spacing: 3px;
+            background-color: hsl(261deg 80% 48%);
+            color: hsl(0, 0%, 100%);
+            box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+        }
+
+        button:active {
+            letter-spacing: 3px;
+            background-color: hsl(261deg 80% 48%);
+            color: hsl(0, 0%, 100%);
+            box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+            transform: translateY(10px);
+            transition: 100ms;
+        }
+
+        /* Loader styles */
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* Hide initially */
+        }
+
+        .loader svg polyline {
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .loader svg polyline#back {
+            fill: none;
+            stroke: #ff4d5033;
+        }
+
+        .loader svg polyline#front {
+            fill: none;
+            stroke: #ff4d4f;
+            stroke-dasharray: 48, 144;
+            stroke-dashoffset: 192;
+            animation: dash_682 1.4s linear infinite;
+        }
+
+        @keyframes dash_682 {
+            72.5% {
+                opacity: 0;
+            }
+
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const returnHomeButton = document.getElementById('returnHomeButton');
+            returnHomeButton.addEventListener('click', function() {
+                window.location.href = 'index.html';
+            });
+        });
+
+        // Function to handle file preview
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('imagePreview');
+                output.innerHTML = '<img src="' + reader.result + '" style="max-width: 100%; max-height: 300px; margin-top: 20px;">';
+                var label = document.getElementById('imagePreviewLabel');
+                label.innerHTML = 'Change Image';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        // Function to show loader
+        function showLoader() {
+            document.querySelector('.loader').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Lung Disease Classification</h1>
+        <form action="/predict" method="post" enctype="multipart/form-data" id="uploadForm" onsubmit="showLoader()">
+            <input type="file" id="imageUpload" name="image" accept="image/*" style="display: none;" onchange="previewImage(event);" required>
+            <label for="imageUpload" id="imagePreviewLabel">Choose an image</label>
+            <div id="imagePreview"></div>
+            <div class="button-container">
+                <button type="submit">Predict</button>
+            </div>
+            <!-- Loader -->
+            <div class="loader">
+                <svg width="64px" height="48px">
+                    <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back"></polyline>
+                    <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="front"></polyline>
+                </svg>
+            </div>
+        </form>
+        <div class="btn-container">
+            <a href="{{ url_for('index') }}"><button>Home</button></a>
+        </div>
+    </div>
+</body>
+</html>
+
+
